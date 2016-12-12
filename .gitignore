@@ -1,0 +1,8 @@
+packages/
+App_Data/
+bin/
+obj/
+Applicationinsight.xml
+SNAuthentication.csproj.user
+*.log
+
