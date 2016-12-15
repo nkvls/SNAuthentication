@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\206472558\Publish\SNAuth</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\nitin\Publish\SNAuth</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -25,7 +25,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2015 08:32:26</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>12/10/2015 16:55:06</publishTime>
+      <publishTime>10/12/2015 16:55:06</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>07/12/2015 19:04:38</publishTime>
@@ -145,10 +145,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/22/2016 15:44:14</publishTime>
     </File>
     <File Include="bin/SendGrid.dll">
-      <publishTime>08/24/2016 11:07:28</publishTime>
+      <publishTime>12/15/2016 22:02:45</publishTime>
     </File>
     <File Include="bin/SNAuthentication.dll">
-      <publishTime>10/14/2016 11:08:28</publishTime>
+      <publishTime>12/15/2016 22:15:40</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/28/2015 04:02:42</publishTime>
@@ -391,7 +391,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/14/2016 10:51:52</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>10/14/2016 09:47:16</publishTime>
+      <publishTime>12/15/2016 22:02:45</publishTime>
     </File>
     <File Include="Scripts/ai.0.22.9-build00167.js">
       <publishTime>09/14/2016 10:24:56</publishTime>
@@ -400,7 +400,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2016 10:24:56</publishTime>
     </File>
     <File Include="Scripts/autocomplete.js">
-      <publishTime>10/13/2016 16:21:52</publishTime>
+      <publishTime>10/15/2016 16:58:45</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>09/14/2016 10:24:49</publishTime>
@@ -478,7 +478,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/13/2016 13:42:58</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>10/13/2016 16:17:11</publishTime>
+      <publishTime>10/15/2016 17:16:04</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
       <publishTime>09/14/2016 10:24:51</publishTime>
@@ -502,7 +502,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2016 10:24:47</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/13/2016 13:56:34</publishTime>
+      <publishTime>10/14/2016 23:07:37</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>09/14/2016 10:24:51</publishTime>
@@ -532,7 +532,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2016 10:24:51</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/14/2016 10:32:19</publishTime>
+      <publishTime>10/14/2016 11:13:36</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/14/2016 10:24:51</publishTime>
@@ -544,7 +544,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2016 10:24:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/14/2016 11:08:29</publishTime>
+      <publishTime>12/15/2016 22:15:40</publishTime>
     </File>
   </ItemGroup>
 </Project>

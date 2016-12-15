@@ -76,45 +76,54 @@ namespace SNAuthentication.Controllers
                 return View(model);
             }
 
-            _logger.Debug("Finding user name by email");
-            // Require the user to have a confirmed email before they can log on.
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user != null)
+            try
             {
-                _logger.Debug("Checking If email is confirmed");
-                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                _logger.Debug("Finding user name by email");
+                // Require the user to have a confirmed email before they can log on.
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user != null)
                 {
-                    _logger.Debug("Sending again email confirmation for user to confirm");
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
+                    _logger.Debug("Checking If email is confirmed");
+                    if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                    {
+                        _logger.Debug("Sending again email confirmation for user to confirm");
+                        string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
 
-                    // Uncomment to debug locally  
-                    // ViewBag.Link = callbackUrl;
+                        // Uncomment to debug locally  
+                        // ViewBag.Link = callbackUrl;
 
-                    ViewBag.errorMessage = "You must have a confirmed email to log on. "
-                              + "The confirmation token has been resent to your email account.";
-                    //ViewBag.errorMessage = "You must have a confirmed email to log on.";
+                        ViewBag.errorMessage = "You must have a confirmed email to log on. "
+                                  + "The confirmation token has been resent to your email account.";
+                        //ViewBag.errorMessage = "You must have a confirmed email to log on.";
 
-                    return View("Error");
+                        return View("Error");
+                    }
+                }
+
+                _logger.Debug("Signing in user with the email/password");
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl);
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
                 }
             }
-
-            _logger.Debug("Signing in user with the email/password");
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            catch (Exception ex)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                _logger.Debug("AcController.Login:ERROR " + ex);
+                throw;
             }
+            
         }
 
         //
@@ -142,22 +151,31 @@ namespace SNAuthentication.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
-            switch (result)
+            try
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid code.");
-                    return View(model);
+                // The following code protects for brute force attacks against the two factor codes. 
+                // If a user enters incorrect codes for a specified amount of time then the user account 
+                // will be locked out for a specified amount of time. 
+                // You can configure the account lockout settings in IdentityConfig
+                var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToLocal(model.ReturnUrl);
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid code.");
+                        return View(model);
+                }
             }
+            catch (Exception ex)
+            {
+                _logger.Error("AccountController.VerifyCode : ERROR " + ex);
+                throw;
+            }
+            
         }
 
         //
@@ -177,35 +195,44 @@ namespace SNAuthentication.Controllers
         {
             if (ModelState.IsValid)
             {
-                _logger.Debug("AccountController.Register: Going to register new user");
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ReferredBy = model.ReferredBy, FirstName = model.FirstName, LastName = model.LastName, PhoneNo = model.PhoneNo };
-                //var userDetails = new UserInfo { FirstName = model.FirstName, LastName = model.LastName }
-                var result = await UserManager.CreateAsync(user, model.Password);
-                _logger.Debug("AccountController.Register: New User register successful");
-                if (result.Succeeded)
+                try
                 {
-                    //  Comment the following line to prevent log in until the user is confirmed.
-                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    _logger.Debug("AccountController.Register: Going to register new user");
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ReferredBy = model.ReferredBy, FirstName = model.FirstName, LastName = model.LastName, PhoneNo = model.PhoneNo };
+                    //var userDetails = new UserInfo { FirstName = model.FirstName, LastName = model.LastName }
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    _logger.Debug("AccountController.Register: New User register successful");
+                    if (result.Succeeded)
+                    {
+                        //  Comment the following line to prevent log in until the user is confirmed.
+                        //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                    //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+                        //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    _logger.Debug("AccountController.Register: Generating email link to new user");
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    _logger.Debug("AccountController.Register: Email link is sent to the user");
-                    // Uncomment to debug locally 
-                    // TempData["ViewBagLink"] = callbackUrl;
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        _logger.Debug("AccountController.Register: Generating email link to new user");
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        _logger.Debug("AccountController.Register: Email link is sent to the user");
+                        // Uncomment to debug locally 
+                        // TempData["ViewBagLink"] = callbackUrl;
 
-                    ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
-                                    + "before you can log in.";
+                        ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
+                                        + "before you can log in.";
 
-                    return View("Info");
-                    //return RedirectToAction("Index", "Home");
+                        return View("Info");
+                        //return RedirectToAction("Index", "Home");
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+                catch (Exception ex)
+                {
+                    _logger.Error("AccountController.Register: ERROR " + ex );
+                    throw;
+                }
+                
             }
 
             // If we got this far, something failed, redisplay form
@@ -242,19 +269,28 @@ namespace SNAuthentication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                try
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
+                    var user = await UserManager.FindByNameAsync(model.Email);
+                    if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                    {
+                        // Don't reveal that the user does not exist or is not confirmed
+                        return View("ForgotPasswordConfirmation");
+                    }
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error("AcController.ForgotPassword:ERROR " + ex);
+                    throw;
+                }
+                
             }
 
             // If we got this far, something failed, redisplay form
@@ -288,19 +324,30 @@ namespace SNAuthentication.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null)
+
+
+            try
             {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    return RedirectToAction("ResetPasswordConfirmation", "Account");
+                }
+                var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ResetPasswordConfirmation", "Account");
+                }
+                AddErrors(result);
+                return View();
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
+            catch (Exception ex)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                _logger.Error("AcController.ResetPassword:ERROR " + ex);
+                throw;
             }
-            AddErrors(result);
-            return View();
+            
         }
 
         //

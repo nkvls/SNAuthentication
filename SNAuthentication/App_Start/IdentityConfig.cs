@@ -8,8 +8,12 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using SNAuthentication.Models;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using SNAuthentication.Helper;
+using SendGrid;
+using System.Configuration;
+using System.Net.Mime;
 
 namespace SNAuthentication
 {
@@ -19,77 +23,114 @@ namespace SNAuthentication
         public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            //await configSendGridasync(message);
+            await configSendGridasync1(message);
 
-            var mailMessage = new MailMessage
-                ("newlifeawakeninguk@gmail.com", message.Destination, message.Subject, message.Body);
+            //var mailMessage = new MailMessage
+            //    ("newlifeawakeninguk@gmail.com", message.Destination, message.Subject, message.Body);
 
-            mailMessage.IsBodyHtml = true;
+            //mailMessage.IsBodyHtml = true;
 
             
-            using (var client = new SmtpClient())
-            {
-                var cred = new NetworkCredential
-                {
-                    UserName = "newlifeawakeninguk@gmail.com",
-                    Password = "Nitin@001"
-                };
-                client.UseDefaultCredentials = false;
-                client.Credentials = cred;
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //using (var client = new SmtpClient())
+            //{
+            //    var cred = new NetworkCredential
+            //    {
+            //        UserName = "newlifeawakeninguk@gmail.com",
+            //        Password = "Nitin@001"
+            //    };
+            //    client.UseDefaultCredentials = false;
+            //    client.Credentials = cred;
+            //    client.Host = "smtp.gmail.com";
+            //    client.Port = 587;
+            //    client.EnableSsl = true;
+            //    client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-                //client.Send(mailMessage);
-                //var cred = new NetworkCredential
-                //{
-                //    UserName = "tonitinverma@hotmail.com",
-                //    Password = "shysnazzy"
-                //};
-                //client.Credentials = cred;
-                //client.Host = "smtp-mail.outlook.com";
-                //client.Port = 587;
-                //client.EnableSsl = true;
-                _logger.Debug("IdentityConfig.SendAsync: Calling smpt client to send the mail");
-                await client.SendMailAsync(mailMessage);
-                _logger.Debug("IdentityConfig.SendAsync: Async mail send to the new user");
-            }
+            //    //client.Send(mailMessage);
+            //    //var cred = new NetworkCredential
+            //    //{
+            //    //    UserName = "tonitinverma@hotmail.com",
+            //    //    Password = "shysnazzy"
+            //    //};
+            //    //client.Credentials = cred;
+            //    //client.Host = "smtp-mail.outlook.com";
+            //    //client.Port = 587;
+            //    //client.EnableSsl = true;
+            //    _logger.Debug("IdentityConfig.SendAsync: Calling smpt client to send the mail");
+            //    await client.SendMailAsync(mailMessage);
+            //    _logger.Debug("IdentityConfig.SendAsync: Async mail send to the new user");
+            //}
         }
+
 
         // Use NuGet to install SendGrid (Basic C# client lib) 
+        //private async Task configSendGridasync(IdentityMessage message)
+        //{
+        //    var myMessage =new SendGrid.SendGridMessage();
+        //    myMessage.AddTo(message.Destination);
+        //    myMessage.From = new System.Net.Mail.MailAddress(
+        //                        "Joe@contoso.com", "Joe S.");
+        //    myMessage.Subject = message.Subject;
+        //    myMessage.Text = message.Body;
+        //    myMessage.Html = message.Body;
+
+        //    var credentials = new NetworkCredential(
+        //               ConfigurationManager.AppSettings["mailAccount"],
+        //               ConfigurationManager.AppSettings["mailPassword"]
+        //               );
+
+        //    // Create a Web transport for sending email.
+        //    var transportWeb = new Web(credentials);
+
+        //    // Send the email.
+        //    if (transportWeb != null)
+        //    {
+        //        await transportWeb.DeliverAsync(myMessage);
+        //    }
+        //    else
+        //    {
+        //        _logger.Error("Failed to create Web transport.");
+        //        await Task.FromResult(0);
+        //    }
+        //}
+
         private async Task configSendGridasync1(IdentityMessage message)
         {
-            //var myMessage = new SendGridMessage();
-            //myMessage.AddTo(message.Destination);
-            //myMessage.From = new System.Net.Mail.MailAddress(
-            //                    "Joe@contoso.com", "Joe S.");
-            //myMessage.Subject = message.Subject;
-            //myMessage.Text = message.Body;
-            //myMessage.Html = message.Body;
+            try
+            {
+                var userNameFrom = ConfigurationManager.AppSettings["mailAccount"];
+               var passwordFrom = ConfigurationManager.AppSettings["mailPassword"];
 
-            //var credentials = new NetworkCredential(
-            //           ConfigurationManager.AppSettings["mailAccount"],
-            //           ConfigurationManager.AppSettings["mailPassword"]
-            //           );
+                MailMessage mailMsg = new MailMessage();
 
-            //// Create a Web transport for sending email.
-            //var transportWeb = new Web(credentials);
+                // To
+                mailMsg.To.Add(new MailAddress(message.Destination, message.Destination));
 
-            //// Send the email.
-            //if (transportWeb != null)
-            //{
-            //    await transportWeb.DeliverAsync(myMessage);
-            //}
-            //else
-            //{
-            //    Trace.TraceError("Failed to create Web transport.");
-            //    await Task.FromResult(0);
-            //}
-        }
+                // From
+                mailMsg.From = new MailAddress(userNameFrom, userNameFrom);
 
-        private async Task configSendGridasync(IdentityMessage message)
-        {
+                // Subject and multipart/alternative Body
+                mailMsg.Subject = message.Subject;
+                string text = message.Body;
+                string html = message.Body;
+                mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+                mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
+
+                // Init SmtpClient and send
+                SmtpClient smtpClient = new SmtpClient("smtp.sendgrid.net", Convert.ToInt32(587));
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(userNameFrom, passwordFrom);
+                smtpClient.Credentials = credentials;
+
+                _logger.Debug("IdentityConfig.SendAsync: Calling smpt client to send the mail");
+                //smtpClient.Send(mailMsg);
+                await smtpClient.SendMailAsync(mailMsg);
+                _logger.Debug("IdentityConfig.SendAsync: Async mail send to the new user");
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("IdentityConfig.SendAsync: ERROR " + ex);
+            }
+
+
             //var mailMessage = new MailMessage
             //    ("nitinv.verma@gmail.com", message.Destination, message.Subject, message.Body);
 
