@@ -23,7 +23,7 @@ namespace SNAuthentication
         public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            await configSendGridasync1(message);
+            await configSendGridasync(message);
 
             //var mailMessage = new MailMessage
             //    ("newlifeawakeninguk@gmail.com", message.Destination, message.Subject, message.Body);
@@ -63,35 +63,38 @@ namespace SNAuthentication
 
 
         // Use NuGet to install SendGrid (Basic C# client lib) 
-        //private async Task configSendGridasync(IdentityMessage message)
-        //{
-        //    var myMessage =new SendGrid.SendGridMessage();
-        //    myMessage.AddTo(message.Destination);
-        //    myMessage.From = new System.Net.Mail.MailAddress(
-        //                        "Joe@contoso.com", "Joe S.");
-        //    myMessage.Subject = message.Subject;
-        //    myMessage.Text = message.Body;
-        //    myMessage.Html = message.Body;
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            var myMessage = new SendGridMessage();
+            myMessage.AddTo(message.Destination);
+            myMessage.From = new System.Net.Mail.MailAddress(
+                                "newlifeawakeninguk@gmail.com", "New Life Awakening Movement");
+            myMessage.Subject = message.Subject;
+            myMessage.Text = message.Body;
+            myMessage.Html = message.Body;
 
-        //    var credentials = new NetworkCredential(
-        //               ConfigurationManager.AppSettings["mailAccount"],
-        //               ConfigurationManager.AppSettings["mailPassword"]
-        //               );
+            var credentials = new NetworkCredential(
+                       ConfigurationManager.AppSettings["mailAccount"],
+                       ConfigurationManager.AppSettings["mailPassword"]
+                       );
 
-        //    // Create a Web transport for sending email.
-        //    var transportWeb = new Web(credentials);
+            // Create a Web transport for sending email.
+            _logger.Debug("Creating transport web request.");
+            var transportWeb = new Web(credentials);
 
-        //    // Send the email.
-        //    if (transportWeb != null)
-        //    {
-        //        await transportWeb.DeliverAsync(myMessage);
-        //    }
-        //    else
-        //    {
-        //        _logger.Error("Failed to create Web transport.");
-        //        await Task.FromResult(0);
-        //    }
-        //}
+            // Send the email.
+            if (transportWeb != null)
+            {
+                _logger.Debug("Sending web request for delivery");
+                await transportWeb.DeliverAsync(myMessage);
+                _logger.Debug("delivery done");
+            }
+            else
+            {
+                _logger.Error("IdentityConfig.configSendGridasync ERROR: Failed to create Web transport.");
+                await Task.FromResult(0);
+            }
+        }
 
         private async Task configSendGridasync1(IdentityMessage message)
         {

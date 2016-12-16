@@ -5,4 +5,5 @@ obj/
 Applicationinsight.xml
 SNAuthentication.csproj.user
 *.log
-
+SNAuthentication/Properties/PublishProfiles/
+.vs/

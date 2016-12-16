@@ -214,13 +214,13 @@ namespace SNAuthentication.Controllers
                         _logger.Debug("AccountController.Register: Generating email link to new user");
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        await UserManager.SendEmailAsync(user.Id, "Confirm your account", "<h1>New Life Awakening Movement</h1> <br> Thank you for registering and showing the interest. <br> Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                         _logger.Debug("AccountController.Register: Email link is sent to the user");
                         // Uncomment to debug locally 
                         // TempData["ViewBagLink"] = callbackUrl;
 
                         ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
-                                        + "before you can log in.";
+                                        + "before you can log in. <br> If you do not see the mail in your account, please check junk folder.";
 
                         return View("Info");
                         //return RedirectToAction("Index", "Home");
