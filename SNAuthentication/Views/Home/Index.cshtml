@@ -3,43 +3,54 @@
 }
 
 
-<div style="padding-top:10px;" >
-
-        <img src="~/Content/images/gurunath-825x360.jpg" width="1080px;" />
-
+<div style="padding-top:10px;">
+    <img src="~/Content/images/gurunath-825x360.jpg" width="1080px;" style="opacity:0.8" />
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <video controls="controls" autoplay="autoplay" height="300" width="300">
-            <source src="~/videos/surya.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
-        <br />
-        <div style="width:300px;height:50px;text-align:center;">
-            @Html.ActionLink("Surya", "Download", "Home", new { file = "surya.mp4" }, new { @target = "_blank" })
+<div class="container">
+    <div class="row" style="margin-bottom:100px;">
+        <div class="col-md-4">
+            <video controls="controls" autoplay="autoplay" height="300" width="300">
+                <source src="~/videos/Surya_Small.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <br />
+            <div>
+                @Html.ActionLink("Surya", "Download", "Home", new { file = "surya.mp4" }, new
+           {
+               @class = "col-md-2 col-md-offset-4 btn btn-danger",
+               @target = "_blank"
+           })
+            </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <video controls="controls" autoplay="autoplay" height="300" width="300">
-            <source src="~/videos/earthpeace.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
-        <br />
-        <div style="width:300px;height:50px;text-align:center;">
-            @Html.ActionLink("Earth Peace", "Download", "Home", new { file = "earthpeace.mp4" }, new { @target = "_blank" })
+        <div class="col-md-4">
+            <video controls="controls" autoplay="autoplay" height="300" width="300">
+                <source src="~/videos/EP_small.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <br />
+            <div>
+                @Html.ActionLink("Earth Peace", "Download", "Home", new { file = "earthpeace.mp4" }, new
+           {
+               @class = "col-md-4 col-md-offset-3 btn btn-danger",
+               @target = "_blank"
+           })
+            </div>
+
+
         </div>
-
-
-    </div>
-    <div class="col-md-4">
-        <video controls="controls" autoplay="autoplay" height="300" width="300">
-            <source src="~/videos/third.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
-        <br />
-        <div style="width:300px;height:50px;text-align:center;">
-            @Html.ActionLink("Third", "Download", "Home", new { file = "third.mp4" }, new { @target = "_blank" })
+        <div class="col-md-4">
+            <video controls="controls" autoplay="autoplay" height="300" width="300">
+                <source src="~/videos/GoldenLotus_Small.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <br />
+            <div>
+                @Html.ActionLink("Golden Lotus", "Download", "Home", new { file = "goldenlotus.mp4" }, new
+           {
+               @class = "col-md-4 col-md-offset-3 btn btn-danger",
+               @target = "_blank"
+           })
+            </div>
         </div>
     </div>
 </div>

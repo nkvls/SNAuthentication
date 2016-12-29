@@ -266,6 +266,8 @@
     <Content Include="Content\images\20981209362-18675710-1.png" />
     <Content Include="Content\images\gurunath-825x360.jpg" />
     <Content Include="Content\images\indicator.gif" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo1.jpg" />
     <Content Include="Content\images\nath_beach.png" />
     <Content Include="Content\images\suryaslide-001-medium.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -338,6 +340,7 @@
     <Content Include="Scripts\autocomplete.js" />
     <Content Include="Log4Net.config" />
     <None Include="Properties\PublishProfiles\LocalIIS.pubxml" />
+    <None Include="Properties\PublishProfiles\NBCUni.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -354,8 +357,11 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="videos\earthpeace.mp4" />
+    <Content Include="videos\EP_Small.mp4" />
+    <Content Include="videos\goldenlotus.mp4" />
+    <Content Include="videos\GoldenLotus_Small.mp4" />
     <Content Include="videos\surya.mp4" />
-    <Content Include="videos\Third.mp4" />
+    <Content Include="videos\Surya_Small.mp4" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

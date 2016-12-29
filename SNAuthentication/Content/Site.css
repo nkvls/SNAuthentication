@@ -1,7 +1,23 @@
-﻿body {
+﻿body, html {
     padding-top: 50px;
     padding-bottom: 20px;
+    height: 100%;
+    background: url(../Content/images/logo1.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
+.float-right {
+    float:right;
+}
+
+.panel-default {
+    opacity: 0.9;
+    margin-top:30px;
+}
+.form-group.last { margin-bottom:0px; }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -9,6 +25,10 @@
     padding-right: 15px;
 }
 
+.background-white {
+    background-color: white;
+    padding: 10px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
