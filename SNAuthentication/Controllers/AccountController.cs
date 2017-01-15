@@ -107,6 +107,7 @@ namespace SNAuthentication.Controllers
                 switch (result)
                 {
                     case SignInStatus.Success:
+                        Session["userObject"] = user;
                         return RedirectToLocal(returnUrl);
                     case SignInStatus.LockedOut:
                         return View("Lockout");

@@ -253,6 +253,10 @@
     <Compile Include="Migrations\201612122206258_First Name Last Name add.Designer.cs">
       <DependentUpon>201612122206258_First Name Last Name add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701151456040_3TermsAddedBoolean.cs" />
+    <Compile Include="Migrations\201701151456040_3TermsAddedBoolean.Designer.cs">
+      <DependentUpon>201701151456040_3TermsAddedBoolean.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -266,10 +270,14 @@
     <Content Include="Content\images\20981209362-18675710-1.png" />
     <Content Include="Content\images\gurunath-825x360.jpg" />
     <Content Include="Content\images\indicator.gif" />
+    <Content Include="Content\images\liststyle20x20.gif" />
     <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\images\logo1.jpg" />
+    <Content Include="Content\images\logo2.jpg" />
     <Content Include="Content\images\nath_beach.png" />
+    <Content Include="Content\images\nlam.png" />
     <Content Include="Content\images\suryaslide-001-medium.jpg" />
+    <Content Include="Content\images\underConstruction.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -341,6 +349,7 @@
     <Content Include="Log4Net.config" />
     <None Include="Properties\PublishProfiles\LocalIIS.pubxml" />
     <None Include="Properties\PublishProfiles\NBCUni.pubxml" />
+    <None Include="Properties\PublishProfiles\NitinLaptop.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -400,6 +409,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\UnderConst.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -426,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612122206258_First Name Last Name add.resx">
       <DependentUpon>201612122206258_First Name Last Name add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151456040_3TermsAddedBoolean.resx">
+      <DependentUpon>201701151456040_3TermsAddedBoolean.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

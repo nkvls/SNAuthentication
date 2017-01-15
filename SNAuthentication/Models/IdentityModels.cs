@@ -14,6 +14,10 @@ namespace SNAuthentication.Models
 
         public string LastName { get; set; }
 
+        public bool SuryaTermsAccept { get; set; }
+        public bool GoldenLotusTermsAccept { get; set; }
+        public bool EarthPeceTermsAccept { get; set; }
+
         public string PhoneNo
         {
             get; set;

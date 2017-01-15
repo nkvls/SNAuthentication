@@ -10,19 +10,38 @@ namespace SNAuthentication.Controllers
     
     public class HomeController : Controller
     {
+        private Models.ApplicationDbContext db = new Models.ApplicationDbContext();
+        public HomeController()
+        {
+        }
+
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            
+            //var user = (Models.ApplicationUser)Session["userObject"];
+            return View(user);
         }
 
         public ActionResult About()
         {
+            var underCons = ConfigurationManager.AppSettings["websiteUnderConstruction"]; 
+            if(Convert.ToBoolean(underCons) == true)
+            {
+                return View("UnderConst");
+            }
             var siteAddress = ConfigurationManager.AppSettings["siteAddress"];
             return Redirect(siteAddress);
             //ViewBag.Message = "Your application description page.";
 
             //return View();
+        }
+
+        public ActionResult Disclaimer()
+        {
+            //return Redirect("Privacy");
+            return View("Privacy");
         }
 
         [Authorize]
@@ -31,6 +50,37 @@ namespace SNAuthentication.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult FAQ()
+        {
+            ViewBag.Message = "Frequently asked Questions";
+
+            return View();
+        }
+
+        public JsonResult UpdateTerms(string termsType)
+        {
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            switch (termsType)
+            {
+                case "surya":
+                    user.SuryaTermsAccept = true;
+                    break;
+                case "goldenlotus":
+                    user.GoldenLotusTermsAccept = true;
+                    break;
+                case "earthpeace":
+                    user.EarthPeceTermsAccept = true;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(termsType);
+                    
+            }
+            db.SaveChanges();
+            return new JsonResult() { Data = new { success = true }, ContentType = "application/json", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            //return Json(new { success = true });
         }
 
         public ActionResult Download(string file)
@@ -43,6 +93,7 @@ namespace SNAuthentication.Controllers
             }
 
             byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            
             var response = new FileContentResult(fileBytes, "application/octet-stream")
             {
                 FileDownloadName = file

@@ -59,7 +59,8 @@ namespace SNAuthentication.Models
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }        
+        public bool RememberMe { get; set; }
+
     }
 
     public class RegisterViewModel

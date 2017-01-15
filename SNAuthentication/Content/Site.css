@@ -12,7 +12,9 @@
 .float-right {
     float:right;
 }
-
+.color-white {
+    color: white;
+}
 .panel-default {
     opacity: 0.9;
     margin-top:30px;
@@ -45,4 +47,36 @@ textarea {
 
 .ui-autocomplete-input {
     max-width: 280px;
+}
+
+strong {
+    color: #8e0000;
+}
+
+#nlamInfo  li {
+    list-style:none;
+    /** the image will be vertically aligned in the center **/
+    background: url(../Content/images/liststyle20x20.gif) left center no-repeat; 
+    /** move the text to the right **/
+    padding-left: 30px;
+    margin-bottom:10px;
+}
+
+.dividerLine {
+    display:inline-block;
+    background-color:#fddd26;
+    height:2px;
+    width:30%;
+    vertical-align: top;
+    margin-top:50px;
+    margin-right:10px;
+}
+
+.indexRow {
+    background-color:white;
+    margin-bottom:50px;
+    height:350px;
+    border-radius:5px;
+    box-shadow:4px 4px 1px #888;
+    opacity: 0.95;
 }
