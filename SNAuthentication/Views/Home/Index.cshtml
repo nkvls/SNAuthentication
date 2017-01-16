@@ -13,241 +13,235 @@
 <br />
 <div class="container">
     <div class="row indexRow">
-        <div class="col-md-12">
-            <div id="nlamInfo" class="col-md-5">
-                <section>
-                    <h3>Surya Yog</h3>
-                    <ul>
-                        <li>
-                            <span>Celebrating Livingness</span>
-                        </li>
-                        <li>
-                            <span>Generates Vitality, Virility and Vivacity</span>
-                        </li>
-                        <li>
-                            <span>Sources Pranic Health, Healing and Happiness</span>
-                        </li>
-                        <li>
-                            <span>Rejuvenates ( A Rejuven-Detox technique)</span>
-                        </li>
-                        <li>
-                            <span>Celebrating Livingness</span>
-                        </li>
-                    </ul>
-                </section>
-            </div>
+        <div id="nlamInfo" class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+            <section>
+                <h3>Surya Yog</h3>
+                <ul>
+                    <li>
+                        <span>Celebrating Livingness</span>
+                    </li>
+                    <li>
+                        <span>Generates Vitality, Virility and Vivacity</span>
+                    </li>
+                    <li>
+                        <span>Sources Pranic Health, Healing and Happiness</span>
+                    </li>
+                    <li>
+                        <span>Rejuvenates ( A Rejuven-Detox technique)</span>
+                    </li>
+                    <li>
+                        <span>Celebrating Livingness</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
 
-            <div class="hidden-xs col-md-1">
-                <div class="container-fluid" style="padding-left:30%;">
-                    <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-top:100px;"></div>
-                    <div><strong>.</strong></div>
-                    <div><strong>.</strong></div>
-                    <div><strong>.</strong></div>
-                    <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;"></div>
-                </div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
+            <div class="container-fluid" style="padding-left:30%;">
+                <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-top:50px;"></div>
+                <div><strong>.</strong></div>
+                <div><strong>.</strong></div>
+                <div><strong>.</strong></div>
+                <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-bottom:50px;"></div>
             </div>
+        </div>
 
-            <div id="suryaInfo" class="col-md-6" style="height:300px;overflow:auto;margin-top:20px;border-radius:5px;">
-                @if (!Model.SuryaTermsAccept)
-                {
-                    <div id="suryaTerms">
-                        <div class="row" style="background-color:white">
-                            <div style="background-color:#EDC975;padding:10px;">
-                                <div style="padding-bottom:10px;"><strong>Please read and accept at the bottom of the box</strong></div>
-                                <div class="col-md-12" style="background-color:white">
-                                    <section>
-                                        <p>
-                                            The advice, ideas, views, statement and information contained in this programme may not be appropriated for individuals
-                                            suffering from health issues. Parental guidance is advised for children. Viewers are recommended to use their discretion
-                                            and make appropriate enquiries, check the factual accuracy, completeness or usefulness of any give information,
-                                            product or process mentioned in the programme and take appropriate advice about any information shared during the
-                                            programme.
-                                        </p>
-                                        <p>
-                                            If viewers select to follow the programme without consulting a medical physician, viewers shall be doing so at their own risk.
-                                            No information, statement or view expressed during the programme or exercise demonstrated should be interpreted as a
-                                            recommendation for a treatment plan, product or course of action. As with any exercise programme, these should be
-                                            performed under expert guidance or by persons at their own risks. If at any point during the workout the viewer begins to
-                                            feel pain, dizzy, faints or has any physical discomfort, the viewer should stop immediately and again consult a physician.
-                                        </p>
-                                        <p>
-                                            The views, ideas, opinions, comments, statements expressed in the programme are solely that of the host(s), and
-                                            participant(s). Neither Brilliant wellness Pvt. Ltd. (‘Company’) nor the creators nor the producer (i) endorse the programme
-                                            or (ii) give any warrant or guarantee that the information or the product or performance of the exercises demonstrated in
-                                            the programme is suitable and safe for use or implementation by the viewers.
-                                        </p>
-                                        <p>
-                                            Neither the company nor the creators nor the producer shall be responsible or liable to any person for any direct, indirect,
-                                            incidental or special damages, including but not limited to damages as a result of any act done by the viewers pursuant
-                                            to watching this programme, or performance of the excercises demonstrated during the programme.
-                                        </p>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-3">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="chkSurya"> Accept terms & condition
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-5">
-                            <input type="button" class="btn btn-info" onclick=TermsCondition("chkSurya") value="Continue" />
-                        </div>
+        <div id="suryaInfo" class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="height:200px;">
+            @if (!Model.SuryaTermsAccept)
+            {
+                <div class="row">
+                    <div class="col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-lg-offset-5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h4>Disclaimer</h4>
                     </div>
-                }
-                else
-                {
-                    <div id="downloadBtn" style="margin-top:100px;">
-                        @Html.ActionLink("Download Surya", "Download", "Home", new { file = "surya.mp4" }, new
+                </div>
+                <div class="row" style="overflow-y:scroll;overflow-x:no-display;height:75%;width:95%;margin-left:2%;">
+                    <div class="col-xs-12 col-md-12 col-lg-12" style="background-color:white">
+                        <section>
+                            <p>
+                                The advice, ideas, views, statement and information contained in this programme may not be appropriated for individuals
+                                suffering from health issues. Parental guidance is advised for children. Viewers are recommended to use their discretion
+                                and make appropriate enquiries, check the factual accuracy, completeness or usefulness of any give information,
+                                product or process mentioned in the programme and take appropriate advice about any information shared during the
+                                programme.
+                            </p>
+                            <p>
+                                If viewers select to follow the programme without consulting a medical physician, viewers shall be doing so at their own risk.
+                                No information, statement or view expressed during the programme or exercise demonstrated should be interpreted as a
+                                recommendation for a treatment plan, product or course of action. As with any exercise programme, these should be
+                                performed under expert guidance or by persons at their own risks. If at any point during the workout the viewer begins to
+                                feel pain, dizzy, faints or has any physical discomfort, the viewer should stop immediately and again consult a physician.
+                            </p>
+                            <p>
+                                The views, ideas, opinions, comments, statements expressed in the programme are solely that of the host(s), and
+                                participant(s). Neither Brilliant wellness Pvt. Ltd. (‘Company’) nor the creators nor the producer (i) endorse the programme
+                                or (ii) give any warrant or guarantee that the information or the product or performance of the exercises demonstrated in
+                                the programme is suitable and safe for use or implementation by the viewers.
+                            </p>
+                            <p>
+                                Neither the company nor the creators nor the producer shall be responsible or liable to any person for any direct, indirect,
+                                incidental or special damages, including but not limited to damages as a result of any act done by the viewers pursuant
+                                to watching this programme, or performance of the excercises demonstrated during the programme.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="checkbox col-xs-6 col-sm-4 col-md-6 col-lg-6 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                        <label>
+                            <input type="checkbox" id="chkSurya"><b> Accept terms & condition</b>
+                        </label>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top:5px;">
+                        <input type="button" class="btn btn-info" onclick=TermsCondition("chkSurya") value="Continue" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div id="downloadBtn" style="margin-top:100px;">
+                    @Html.ActionLink("Download Surya", "Download", "Home", new { file = "surya.mp4" }, new
                {
-                   @class = "col-md-4 col-md-offset-4 btn btn-danger",
+                   @class = "col-xs-8 col-sm-5 col-md-5 col-lg-5 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 btn btn-danger",
                    @target = "_blank"
                })
-                    </div>
-                }
-            </div>
+                </div>
+            }
         </div>
     </div>
 
     <div class="row indexRow">
-        <div class="col-md-12">
-            <div id="nlamInfo" class="col-md-5">
-                <section>
-                    <h3>Golden Lotus (Heartful Art)</h3>
-                    <ul>
-                        <li>
-                            <span>Flowers heart chakra to feel tranquility and love</span>
-                        </li>
-                        <li>
-                            <span>Dissolves Emotional Suffering</span>
-                        </li>
-                        <li>
-                            <span>Celebrates Soulful Happiness</span>
-                        </li>
-                    </ul>
-                </section>
-            </div>
+        <div id="nlamInfo" class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+            <section>
+                <h3>Golden Lotus (Heartful Art)</h3>
+                <ul>
+                    <li>
+                        <span>Flowers heart chakra to feel tranquility and love</span>
+                    </li>
+                    <li>
+                        <span>Dissolves Emotional Suffering</span>
+                    </li>
+                    <li>
+                        <span>Celebrates Soulful Happiness</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
 
-            <div class="hidden-xs col-md-1">
-                <div class="container-fluid" style="padding-left:30%;">
-                    <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-top:100px;"></div>
-                    <div><strong>.</strong></div>
-                    <div><strong>.</strong></div>
-                    <div><strong>.</strong></div>
-                    <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;"></div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
+            <div class="container-fluid" style="padding-left:30%;">
+                <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-top:50px;"></div>
+                <div><strong>.</strong></div>
+                <div><strong>.</strong></div>
+                <div><strong>.</strong></div>
+                <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-bottom:50px;"></div>
+            </div>
+        </div>
+
+        <div id="goldenlotusInfo" class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="height:200px;">
+            @if (!Model.GoldenLotusTermsAccept)
+            {
+                <div class="row">
+                    <div class="col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-lg-offset-5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h4>Disclaimer</h4>
+                    </div>
                 </div>
-            </div>
-
-            <div id="goldenlotusInfo" class="col-md-6" style="height:300px;overflow:auto;margin-top:20px;border-radius:5px;">
-                @if (!Model.GoldenLotusTermsAccept)
-                {
-                    <div id="goldenlotusTerms">
-                        <div class="row" style="background-color:white">
-                            <div style="background-color:#EDC975;padding:10px;">
-                                <div style="padding-bottom:10px;"><strong>Please read and accept at the bottom of the box</strong></div>
-                                <div class="col-md-12" style="background-color:white">
-                                    <section>
-                                        <p>
-                                            The advice, ideas, views, statement and information contained in this programme may not be appropriated for individuals
-                                            suffering from health issues. Parental guidance is advised for children. Viewers are recommended to use their discretion
-                                            and make appropriate enquiries, check the factual accuracy, completeness or usefulness of any give information,
-                                            product or process mentioned in the programme and take appropriate advice about any information shared during the
-                                            programme.
-                                        </p>
-                                        <p>
-                                            If viewers select to follow the programme without consulting a medical physician, viewers shall be doing so at their own risk.
-                                            No information, statement or view expressed during the programme or exercise demonstrated should be interpreted as a
-                                            recommendation for a treatment plan, product or course of action. As with any exercise programme, these should be
-                                            performed under expert guidance or by persons at their own risks. If at any point during the workout the viewer begins to
-                                            feel pain, dizzy, faints or has any physical discomfort, the viewer should stop immediately and again consult a physician.
-                                        </p>
-                                        <p>
-                                            The views, ideas, opinions, comments, statements expressed in the programme are solely that of the host(s), and
-                                            participant(s). Neither Brilliant wellness Pvt. Ltd. (‘Company’) nor the creators nor the producer (i) endorse the programme
-                                            or (ii) give any warrant or guarantee that the information or the product or performance of the exercises demonstrated in
-                                            the programme is suitable and safe for use or implementation by the viewers.
-                                        </p>
-                                        <p>
-                                            Neither the company nor the creators nor the producer shall be responsible or liable to any person for any direct, indirect,
-                                            incidental or special damages, including but not limited to damages as a result of any act done by the viewers pursuant
-                                            to watching this programme, or performance of the excercises demonstrated during the programme.
-                                        </p>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-3">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="chkGoldenLotus"> Accept terms & condition
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-5">
-                            <input type="button" class="btn btn-info" onclick=TermsCondition("chkGoldenLotus") value="Continue" />
-                        </div>
+                <div class="row" style="overflow-y:scroll;overflow-x:no-display;height:75%;width:95%;margin-left:2%;">
+                    <div class="col-xs-12 col-md-12 col-lg-12" style="background-color:white">
+                        <section>
+                            <p>
+                                The advice, ideas, views, statement and information contained in this programme may not be appropriated for individuals
+                                suffering from health issues. Parental guidance is advised for children. Viewers are recommended to use their discretion
+                                and make appropriate enquiries, check the factual accuracy, completeness or usefulness of any give information,
+                                product or process mentioned in the programme and take appropriate advice about any information shared during the
+                                programme.
+                            </p>
+                            <p>
+                                If viewers select to follow the programme without consulting a medical physician, viewers shall be doing so at their own risk.
+                                No information, statement or view expressed during the programme or exercise demonstrated should be interpreted as a
+                                recommendation for a treatment plan, product or course of action. As with any exercise programme, these should be
+                                performed under expert guidance or by persons at their own risks. If at any point during the workout the viewer begins to
+                                feel pain, dizzy, faints or has any physical discomfort, the viewer should stop immediately and again consult a physician.
+                            </p>
+                            <p>
+                                The views, ideas, opinions, comments, statements expressed in the programme are solely that of the host(s), and
+                                participant(s). Neither Brilliant wellness Pvt. Ltd. (‘Company’) nor the creators nor the producer (i) endorse the programme
+                                or (ii) give any warrant or guarantee that the information or the product or performance of the exercises demonstrated in
+                                the programme is suitable and safe for use or implementation by the viewers.
+                            </p>
+                            <p>
+                                Neither the company nor the creators nor the producer shall be responsible or liable to any person for any direct, indirect,
+                                incidental or special damages, including but not limited to damages as a result of any act done by the viewers pursuant
+                                to watching this programme, or performance of the excercises demonstrated during the programme.
+                            </p>
+                        </section>
                     </div>
-                }
-                else
-                {
-                    <div id="downloadGoldenLotusBtn" style="margin-top:100px;">
-                        @Html.ActionLink("Download Golden Lotus", "Download", "Home", new { file = "goldenlotus.mp4" }, new
-                   {
-                       @class = "col-md-4 col-md-offset-4 btn btn-danger",
-                       @target = "_blank"
-                   })
+                </div>
+                <div class="row">
+                    <div class="checkbox col-xs-6 col-sm-4 col-md-6 col-lg-6 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                        <label>
+                            <input type="checkbox" id="chkGoldenLotus"><b> Accept terms & condition</b>
+                        </label>
                     </div>
-                }
-            </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top:5px;">
+                        <input type="button" class="btn btn-info" onclick=TermsCondition("chkGoldenLotus") value="Continue" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div id="downloadBtn" style="margin-top:100px;">
+                    @Html.ActionLink("Download Golden Lotus", "Download", "Home", new { file = "goldenlotus.mp4" }, new
+               {
+                   @class = "col-xs-8 col-sm-5 col-md-5 col-lg-5 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 btn btn-danger",
+                   @target = "_blank"
+               })
+                </div>
+            }
         </div>
     </div>
 
     <div class="row indexRow">
-        <div class="col-md-12">
-            <div id="nlamInfo" class="col-md-5">
-                <section>
-                    <h3>Earth Peace Meditation</h3>
-                    <ul>
-                        <li>
-                            <span>Fills you with peace and love</span>
-                        </li>
-                        <li>
-                            <span>Radiates earth peace through self peace</span>
-                        </li>
-                        <li>
-                            <span>Harmonizes a peaceful co-existence among the peoples of earth</span>
-                        </li>
-                    </ul>
-                </section>
+        <div id="nlamInfo" class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+            <section>
+                <h3>Earth Peace Meditation</h3>
+                <ul>
+                    <li>
+                        <span>Fills you with peace and love</span>
+                    </li>
+                    <li>
+                        <span>Radiates earth peace through self peace</span>
+                    </li>
+                    <li>
+                        <span>Harmonizes a peaceful co-existence among the peoples of earth</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
+            <div class="container-fluid" style="padding-left:30%;">
+                <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-top:50px;"></div>
+                <div><strong>.</strong></div>
+                <div><strong>.</strong></div>
+                <div><strong>.</strong></div>
+                <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-bottom:50px;"></div>
+            </div>
+        </div>
+
+        <div id="earthpeaceInfo" class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="height:200px;">
+            <div id="downloadEarthPeaceLotusBtn" style="margin-top:100px;">
+                @Html.ActionLink("Download Earth Peace", "Download", "Home", new { file = "earthpeace.mp4" }, new
+           {
+               @class = "col-xs-8 col-sm-5 col-md-5 col-lg-5 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 btn btn-danger",
+               @target = "_blank"
+           })
             </div>
 
-            <div class="col-md-1">
-                <div class="container-fluid" style="padding-left:30%;">
-                    <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;margin-top:100px;"></div>
-                    <div><strong>.</strong></div>
-                    <div><strong>.</strong></div>
-                    <div><strong>.</strong></div>
-                    <div style="background-color:#feeb7b;width:2px;vertical-align: top;height:50px;"></div>
-                </div>
-            </div>
-
-            <div id="earthpeaceInfo" class="col-md-6" style="height:300px;overflow:auto;margin-top:20px;border-radius:5px;">
-                <div id="downloadEarthPeaceLotusBtn" style="margin-top:100px;">
-                    @Html.ActionLink("Download Earth Peace", "Download", "Home", new { file = "earthpeace.mp4" }, new
-                    {
-                        @class = "col-md-4 col-md-offset-4 btn btn-danger",
-                        @target = "_blank"
-                    })
-                </div>
-                
-            </div>
         </div>
     </div>
 </div>
-
-
+<br />
+<br />
 
 <script type="text/javascript">
     function TermsCondition(checkbox) {
@@ -286,7 +280,7 @@
                 console.log(data);
                 if (data.success == true) {
                     window.location.reload();
-                }                
+                }
             },
             error: function () {
                 alert("error");

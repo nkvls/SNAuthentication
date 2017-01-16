@@ -75,8 +75,15 @@ strong {
 .indexRow {
     background-color:white;
     margin-bottom:50px;
-    height:350px;
+    /*height:350px;*/
     border-radius:5px;
     box-shadow:4px 4px 1px #888;
     opacity: 0.95;
+}
+
+.disclaimerContainer {
+    /*background-color:#EDC975;*/
+    height:95%;
+    width:48%;
+    margin-top:1%;
 }

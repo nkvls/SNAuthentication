@@ -44,18 +44,18 @@
     <div class="container body-content">
         @RenderBody()
        
-        <footer class="footer  navbar-fixed-bottom" style="background-color:#323b44">
+        <footer class="footer navbar-fixed-bottom" style="background-color:#323b44">
             <div class="row">
-                <div class="col-xs-offset-1 col-md-offset-1 col-xs-1" style="padding-top:10px;color:white;">
+                <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-6 col-sm-1 col-md-1 col-lg-1" style="color:white;">
                     <p>info@siddhanath.org.uk</p>
                 </div>
-                <div class="col-xs-offset-1 col-md-offset-1 col-xs-1" style="padding-top:10px;color:white;">
+                <div class="hidden-xs hidden-sm col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-1 col-sm-1 col-md-1 col-lg-1" style="color:white;">
                     <p>(+44)7780096403</p>
                 </div>
-                <div class="col-xs-offset-1 col-md-offset-1 col-xs-5" style="padding-top:10px;color:white;">
+                <div class="col-xs-offset-10 col-sm-offset-2 col-md-offset-1 col-lg-offset-1 col-xs-3 col-sm-3 col-md-3 col-lg-3" style="color:white;">
                     <p>&copy; @DateTime.Now.Year - New Life Awakening Movement</p>                    
                 </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-top:10px;color:white;">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="color:white;">
                     <p>@Html.ActionLink("Privacy Policy", "Disclaimer", "Home", null, new { @target = "_blank", @class = "color-white" })</p>
                 </div>
             </div>
