@@ -51,6 +51,7 @@ namespace SNAuthentication.Models
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required]
@@ -68,6 +69,7 @@ namespace SNAuthentication.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required]

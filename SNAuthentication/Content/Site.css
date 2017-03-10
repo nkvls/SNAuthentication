@@ -1,6 +1,6 @@
 ﻿body, html {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    margin-top: 3em;
+    margin-bottom: 1em;
     height: 100%;
     background: url(../Content/images/logo1.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
